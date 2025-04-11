@@ -11,6 +11,7 @@ import org.backend.model.entity.Usuario;
 import org.backend.repositories.UsuarioRepository;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import java.util.Date;
 import java.util.Optional;
 
 @ApplicationScoped
@@ -26,6 +27,8 @@ public class UsuarioService {
         usuario.setEmail(criarUsuario.email);
         usuario.setTelefone(criarUsuario.telefone);
         usuario.setEndereco(criarUsuario.endereco);
+        usuario.setCreatedAt(new Date());
+
 
         String salt = BCrypt.gensalt();
         String senha = BCrypt.hashpw(criarUsuario.senha, salt) ;
@@ -34,15 +37,7 @@ public class UsuarioService {
 
         Optional<Usuario> usuarioExiste = usuarioRepository.findByEmail(usuario.getEmail());
 
-//        if (usuarioExiste.isPresent()) {
-//            throw new WebApplicationException(Response
-//                    .status(Response.Status.CONFLICT)
-//                    .entity(new Message("Usuário já existe!", Response.Status.CONFLICT.getStatusCode()))
-//                    .build()
-//            );
-//        }
-
-        usuarioRepository.persist(usuario);
+        usuarioRepository.persistAndFlush(usuario);
 
         return UsuarioDTO.entityToDTO(usuario);
     }

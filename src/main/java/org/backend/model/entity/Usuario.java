@@ -1,6 +1,8 @@
 package org.backend.model.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,10 +22,13 @@ public class Usuario implements Serializable {
     private String endereco;
     private String status;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name = "updated_at", nullable = false, updatable = true)
+    @Column(name = "updated_at", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
     public Long getId() {
@@ -97,7 +102,7 @@ public class Usuario implements Serializable {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
+
 
     @Override
     public boolean equals(Object o) {
