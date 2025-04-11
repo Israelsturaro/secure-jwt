@@ -1,0 +1,13 @@
+package org.backend.model.dto.auth;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
+@Schema(name = "TokenResponse", description = "DTO Token JWT")
+public class TokenResponse {
+
+
+    @Schema(description = "Token JWT", example = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2V4YW1wbGUuY29tL2lzc3VlciAiLCJ1cG4iOiJtYWlrZWZkbjEzQGdtYWlsLmNvbSIsImdyb3VwcyI6WyJVc2VyIiwiQWRtaW4iXSwiYmlydGhkYXRlIjoiMjAwMS0wNy0xMyIsImlhdCI6MTY0NzIxNzg5MSwiZXhwIjoxNjQ3MjE4MTkxLCJqdGkiOiI3ODgzNjlkNi00MTQ3LTRhMDktODZlYi01NjU1MDVlZDRjNzEifQ.jdm7wVM5eOszZ0X05ZqB4xCRjV_hIrxCFk4XDwIr9DdEPnU04ByQhPotJ_GoV9rv13XcIytM1I4ZRee2DRQ4HdzLC-ZcXoHsAiM8QVJQyXkMC1X2uVklO6aShvHMPobcBFnACRpbOQ8J5CvejthnpRp03ABNTGLZq6MGTsI1s3Qcjxu7obvOUdBno2GHzR6BvB6sBT3FRVlJ-FFW4P29NpdVsaaAuGV-3HNFj3jzz9kcK3i0r8JSY4_HCgjQ7Lgaua70kZxd78mcry7VcfsaCcNvOpLFgJUOT75bp2D9wpyy5aknAdNl8OTbGd47G8MpUzZrhZiPkc7ruY6PC9gJAg")
+    @JsonProperty("access_token")
+    public String token;
+}

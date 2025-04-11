@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  quarkus-postgresql:
+    image: postgres:13.3
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    networks:
+      - quarkus-net
+    ports:
+      - "5432:5432"
+
+  quarkus-app:
+    build:
+      context: .
+    container_name: quarkus-app
+    depends_on:
+      - quarkus-postgresql
+    environment:
+      - DB_HOST:postgres
+    networks:
+      - quarkus-net
+    ports:
+      - "8080:8080"
+
+networks:
+  quarkus-net:
+    driver: bridge

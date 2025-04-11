@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+group = 'org.acme'
+version = '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+
+
+    // Validações e clients
+    implementation 'io.quarkus:quarkus-hibernate-validator'
+//    implementation 'io.quarkus:quarkus-rest-client'
+//    implementation 'io.quarkus:quarkus-rest-client-jackson'
+
+    // OpenAPI, JWT, Health
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+    implementation 'io.quarkus:quarkus-smallrye-jwt'
+    implementation 'io.quarkus:quarkus-smallrye-health'
+
+    // Banco de dados
+    implementation 'io.quarkus:quarkus-jdbc-postgresql'
+    implementation 'io.quarkus:quarkus-hibernate-orm-panache'
+    implementation 'io.quarkus:quarkus-flyway'
+
+    // DI, Templates, Segurança
+    implementation 'io.quarkus:quarkus-arc'
+//    implementation 'io.quarkus:quarkus-qute'
+    implementation 'org.springframework.security:spring-security-crypto:5.6.2'
+
+
+
+    // Testes
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
