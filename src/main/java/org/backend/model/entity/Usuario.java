@@ -2,7 +2,6 @@ package org.backend.model.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,13 +20,14 @@ public class Usuario implements Serializable {
     private String telefone;
     private String endereco;
     private String status;
+    private String permissao;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
@@ -103,6 +103,13 @@ public class Usuario implements Serializable {
         this.endereco = endereco;
     }
 
+    public String getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
+    }
 
     @Override
     public boolean equals(Object o) {

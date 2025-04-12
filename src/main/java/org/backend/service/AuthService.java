@@ -48,6 +48,9 @@ public class AuthService {
     public String gerarTokenJWT(Usuario usuario){
         Set<String> groups = new HashSet<>();
 
+        groups.add(usuario.getStatus());
+        groups.add(usuario.getPermissao());
+
         String token =
                 Jwt.issuer(issuer)
                         .upn(usuario.getEmail())

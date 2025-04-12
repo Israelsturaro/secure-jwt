@@ -35,6 +35,9 @@ public class UsuarioDTO implements Serializable {
     @Schema(description = "Status", example = "ATIVO")
     public String status;
 
+    @Schema(description = "Permissao", example = "USER")
+    private String permissao;
+
     @Schema(description = "Criado em", example = "2022-03-13 19:21:37", hidden = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     public Date createdAt;
@@ -115,6 +118,14 @@ public class UsuarioDTO implements Serializable {
         this.updatedAt = updatedAt;
     }
 
+    public String getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(String permissao) {
+        this.permissao = permissao;
+    }
+
     static public UsuarioDTO entityToDTO(Usuario usuario){
         UsuarioDTO response = new UsuarioDTO();
         response.id = usuario.getId();
@@ -126,6 +137,7 @@ public class UsuarioDTO implements Serializable {
         response.updatedAt = usuario.getUpdatedAt();
         response.createdAt = usuario.getCreatedAt();
         response.telefone = usuario.getTelefone();
+        response.permissao = usuario.getPermissao();
         return response;
     }
 }
