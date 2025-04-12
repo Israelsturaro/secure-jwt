@@ -19,8 +19,6 @@ services:
     container_name: quarkus-app
     depends_on:
       - quarkus-postgresql
-    environment:
-      - DB_HOST:postgres
     networks:
       - quarkus-net
     ports:

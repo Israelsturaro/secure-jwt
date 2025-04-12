@@ -14,6 +14,10 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
         return find("nome", nome).firstResult();
     }
 
+    public Usuario findUsuarioById(Integer id) {
+        return find("id", id).firstResult();
+    }
+
     public Optional<Usuario> findByEmail(String email){
         return find("email", email).firstResultOptional();
     }
@@ -24,5 +28,9 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
 
     public void deleteByName(String nome){
         delete("nome", nome);
+    }
+
+    public List<Usuario> listAll() {
+        return findAll().list();
     }
 }
