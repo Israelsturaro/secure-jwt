@@ -43,6 +43,13 @@ public class UsuarioService {
 
         Optional<Usuario> usuarioExiste = usuarioRepository.findByEmail(usuario.getEmail());
 
+        if(usuarioExiste.isPresent()) {
+            throw new WebApplicationException(
+                    "E-mail j\u00e1 cadastrado",
+                    Response.Status.CONFLICT
+            );
+        }
+
         usuarioRepository.persistAndFlush(usuario);
 
         return UsuarioDTO.entityToDTO(usuario);
